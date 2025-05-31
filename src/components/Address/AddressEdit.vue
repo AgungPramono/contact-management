@@ -1,12 +1,10 @@
 <script setup>
-import {useRoute, useRouter} from "vue-router";
+import {useRoute} from "vue-router";
 import {useLocalStorage} from "@vueuse/core";
 import {onMounted, reactive} from "vue";
 import {contactDetail} from "../../lib/api/ContactApi.js";
-import {alertError, alertSuccess} from "../../lib/alert.js";
-import {createAddress, getAddress, updateAddress} from "../../lib/api/AddressApi.js";
-
-const router = useRouter();
+import {alertConfirm, alertError, alertSuccess} from "../../lib/alert.js";
+import {deleteAddress, getAddress, updateAddress} from "../../lib/api/AddressApi.js";
 
 const route = useRoute();
 const {id, addressId} = route.params;

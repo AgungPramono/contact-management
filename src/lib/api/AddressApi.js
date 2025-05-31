@@ -34,6 +34,16 @@ export const updateAddress = async (token, contactId,addressId ,{street, city, p
     })
 }
 
+export const deleteAddress = async (token, contactId,addressId) => {
+    return fetch(`${import.meta.env.VITE_API_PATH}/contacts/${contactId}/addresses/${addressId}`, {
+        method: 'DELETE',
+        headers: {
+            'Accept': 'application/json',
+            'X-API-TOKEN': token
+        }
+    })
+}
+
 export const addressList = async (token, id) => {
     return fetch(`${import.meta.env.VITE_API_PATH}/contacts/${id}/addresses`, {
         method: 'GET',
