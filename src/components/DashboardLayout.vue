@@ -1,4 +1,9 @@
 <script setup>
+import {onMounted} from "vue";
+
+onMounted(() => {
+
+})
 
 </script>
 
@@ -15,14 +20,14 @@
           <ul class="flex space-x-6">
             <li>
               <RouterLink to="/dashboard/users/profile"
-                 class="text-gray-100 hover:text-white flex items-center transition-colors duration-200">
+                          class="text-gray-100 hover:text-white flex items-center transition-colors duration-200">
                 <i class="fas fa-user-circle mr-2"></i>
                 <span>Profile</span>
               </RouterLink>
             </li>
             <li>
               <RouterLink to="/dashboard/users/logout"
-                 class="text-gray-100 hover:text-white flex items-center transition-colors duration-200">
+                          class="text-gray-100 hover:text-white flex items-center transition-colors duration-200">
                 <i class="fas fa-sign-out-alt mr-2"></i>
                 <span>Logout</span>
               </RouterLink>
@@ -46,5 +51,31 @@
 </template>
 
 <style scoped>
+.bg-gradient {
+  background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+}
 
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card-hover {
+  transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.3);
+}
 </style>
