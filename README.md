@@ -1,5 +1,29 @@
-# Vue 3 + Vite
+# 📇 Contact Management with Vue.js + Spring Boot 3
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+This is a full-stack web application for managing contact information. The frontend is built with **Vue.js**, while the backend is powered by **Spring Boot 3** and connects to a **MySQL** database. The application allows users to create, view, update, and delete (CRUD) contact records efficiently through a clean and responsive user interface.
 
-Learn more about IDE Support for Vue in the [Vue Docs Scaling up Guide](https://vuejs.org/guide/scaling-up/tooling.html#ide-support).
+## 🚀 Features
+
+- ✅ Add new contacts with name, email, phone number, and gender
+- 📝 Edit existing contact information
+- ❌ Delete contacts with confirmation
+- 🔍 View contact details in a structured layout
+- 📄 RESTful API integration between Vue.js and Spring Boot
+- 🛡️ Backend validation and error handling
+- 🌐 Responsive and modern UI using Vue.js
+
+## 🧰 Tech Stack
+
+**Frontend:**
+- Vue.js 3 (Composition API)
+- Tailwind CSS
+- Vite
+
+**Backend:**
+- Spring Boot 3
+- Spring Data JPA
+- MySQL
+- Hibernate Validator
+- RESTful API
+
+> 🔗 Backend Source Code: [https://github.com/AgungPramono/contact-rest-api](https://github.com/AgungPramono/contact-rest-api)
