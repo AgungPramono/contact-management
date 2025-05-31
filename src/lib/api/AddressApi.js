@@ -1,4 +1,4 @@
-export const createAddress =async (token,id,{street,city,province,country,postalCode}) => {
+export const createAddress = async (token, id, {street, city, province, country, postalCode}) => {
     return await fetch(`${import.meta.env.VITE_API_PATH}/contacts/${id}/addresses`, {
         method: 'POST',
         headers: {
@@ -13,5 +13,16 @@ export const createAddress =async (token,id,{street,city,province,country,postal
             country,
             postalCode
         })
+    })
+}
+
+export const addressList = async (token, id) => {
+    return await fetch(`${import.meta.env.VITE_API_PATH}/contacts/${id}/addresses`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'X-API-TOKEN': token
+        }
     })
 }
