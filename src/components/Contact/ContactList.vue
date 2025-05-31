@@ -30,7 +30,7 @@ async function handleDelete(id) {
     return;
   }
 
-  const response = await contactDelete(token.value, {id})
+  const response = await contactDelete(token.value, id)
   const responseBody = await response.json()
   console.log(responseBody)
 

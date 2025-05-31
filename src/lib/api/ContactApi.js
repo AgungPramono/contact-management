@@ -31,7 +31,7 @@ export const contactList = async (token, {name, email, phone, page}) => {
     })
 }
 
-export const contactDelete = async (token, {id}) => {
+export const contactDelete = async (token, id) => {
     console.log(id)
     return await fetch(`${import.meta.env.VITE_API_PATH}/contacts/${id}`, {
         method: 'DELETE',
@@ -39,5 +39,33 @@ export const contactDelete = async (token, {id}) => {
             'Accept': 'application/json',
             'X-API-TOKEN': token
         }
+    })
+}
+
+export const contactDetail = async (token, id) => {
+    console.log(id)
+    return await fetch(`${import.meta.env.VITE_API_PATH}/contacts/${id}`, {
+        method: 'GET',
+        headers: {
+            'Accept': 'application/json',
+            'X-API-TOKEN': token
+        }
+    })
+}
+
+export const contactUpdate = async (token,id, {firstName, lastName, email, phone}) => {
+    return await fetch(`${import.meta.env.VITE_API_PATH}/contacts/${id}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'X-API-TOKEN': token
+        },
+        body: JSON.stringify({
+            firstName,
+            lastName,
+            email,
+            phone
+        })
     })
 }
