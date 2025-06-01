@@ -3,6 +3,8 @@ import {onBeforeMount, onMounted, reactive, ref, watch} from "vue";
 import {contactDelete, contactList} from "../../lib/api/ContactApi.js";
 import {useLocalStorage} from "@vueuse/core";
 import {alertConfirm, alertError, alertSuccess} from "../../lib/alert.js";
+import EditButton from "../widget/EditButton.vue";
+import DeleteButton from "../widget/DeleteButton.vue";
 
 const token = useLocalStorage("token", "")
 const search = reactive({
@@ -236,14 +238,8 @@ onMounted(() => {
           </div>
         </RouterLink>
         <div class="mt-4 flex justify-end space-x-3">
-          <RouterLink :to="`/dashboard/contacts/${contact.id}/edit`"
-                      class="px-4 py-2 bg-gradient text-white rounded-lg hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-800 transition-all duration-200 font-medium shadow-md flex items-center">
-            <i class="fas fa-edit mr-2"></i> Edit
-          </RouterLink>
-          <button v-on:click="()=> handleDelete(contact.id)"
-              class="px-4 py-2 bg-gradient-to-r from-red-600 to-red-500 text-white rounded-lg hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-gray-800 transition-all duration-200 font-medium shadow-md flex items-center">
-            <i class="fas fa-trash-alt mr-2"></i> Delete
-          </button>
+          <EditButton :to="`/dashboard/contacts/${contact.id}/edit`"/>
+          <DeleteButton @click="()=> handleDelete(contact.id)"/>
         </div>
       </div>
     </div>

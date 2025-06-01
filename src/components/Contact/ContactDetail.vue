@@ -6,6 +6,8 @@ import {onMounted, reactive, ref} from "vue";
 import {contactDetail} from "../../lib/api/ContactApi.js";
 import {alertConfirm, alertError, alertSuccess} from "../../lib/alert.js";
 import {addressList, deleteAddress} from "../../lib/api/AddressApi.js";
+import EditButton from "../widget/EditButton.vue";
+import DeleteButton from "../widget/DeleteButton.vue";
 
 const route = useRoute();
 const {id} = route.params;
@@ -193,14 +195,8 @@ onMounted(async () => {
               </p>
             </div>
             <div class="flex justify-end space-x-3">
-              <RouterLink :to="`/dashboard/contacts/${id}/addresses/${address.id}/edit`"
-                          class="px-4 py-2 bg-gradient text-white rounded-lg hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-800 transition-all duration-200 font-medium shadow-md flex items-center">
-                <i class="fas fa-edit mr-2"></i> Edit
-              </RouterLink>
-              <button v-on:click="()=>handleDeleteAddress(address.id)"
-                      class="px-4 py-2 bg-gradient-to-r from-red-600 to-red-500 text-white rounded-lg hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-gray-800 transition-all duration-200 font-medium shadow-md flex items-center">
-                <i class="fas fa-trash-alt mr-2"></i> Delete
-              </button>
+              <EditButton :to="`/dashboard/contacts/${id}/addresses/${address.id}/edit`"/>
+              <DeleteButton @click="()=> handleDeleteAddress(address.id)"/>
             </div>
           </div>
         </div>
@@ -213,7 +209,7 @@ onMounted(async () => {
           <i class="fas fa-arrow-left mr-2"></i> Back
         </RouterLink>
         <RouterLink :to="`/dashboard/contacts/${id}/edit`"
-           class="px-5 py-3 bg-gradient text-white rounded-lg hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-800 transition-all duration-200 font-medium shadow-lg transform hover:-translate-y-0.5 flex items-center">
+                    class="px-5 py-3 bg-gradient text-white rounded-lg hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-800 transition-all duration-200 font-medium shadow-lg transform hover:-translate-y-0.5 flex items-center">
           <i class="fas fa-user-edit mr-2"></i> Edit Contact
         </RouterLink>
       </div>
