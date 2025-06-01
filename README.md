@@ -27,3 +27,6 @@ This is a full-stack web application for managing contact information. The front
 - RESTful API
 
 > 🔗 Backend Source Code: [https://github.com/AgungPramono/contact-rest-api](https://github.com/AgungPramono/contact-rest-api)
+
+> 🔗 Referensi Install Tailwind CSS:https://dev.to/osalumense/install-tailwind-css-v4-in-a-vue-3-vite-project-319g
+

@@ -14,6 +14,7 @@ import ContactDetail from "./components/Contact/ContactDetail.vue";
 import AddressCreate from "./components/Address/AddressCreate.vue";
 import AddressEdit from "./components/Address/AddressEdit.vue";
 import NotFound from "./components/NotFound.vue";
+import './assets/main.css'
 
 const router = createRouter({
     history: createWebHistory(),
