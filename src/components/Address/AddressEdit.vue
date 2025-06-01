@@ -7,6 +7,7 @@ import {alertConfirm, alertError, alertSuccess} from "../../lib/alert.js";
 import {deleteAddress, getAddress, updateAddress} from "../../lib/api/AddressApi.js";
 import BackButton from "../widget/BackButton.vue";
 import SubmitButton from "../widget/SubmitButton.vue";
+import AddressForm from "../widget/AddressForm.vue";
 
 const route = useRoute();
 const {id, addressId} = route.params;
@@ -102,71 +103,8 @@ onMounted(async () => {
           </div>
         </div>
       </div>
-
-      <form v-on:submit.prevent="handleSubmit">
-        <div class="mb-5">
-          <label for="street" class="block text-gray-300 text-sm font-medium mb-2">Street</label>
-          <div class="relative">
-            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-              <i class="fas fa-road text-gray-500"></i>
-            </div>
-            <input type="text" id="street" name="street"
-                   class="w-full pl-10 pr-3 py-3 bg-gray-700 bg-opacity-50 border border-gray-600 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
-                   placeholder="Enter street address" v-model="address.street" required>
-          </div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
-          <div>
-            <label for="city" class="block text-gray-300 text-sm font-medium mb-2">City</label>
-            <div class="relative">
-              <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <i class="fas fa-city text-gray-500"></i>
-              </div>
-              <input type="text" id="city" name="city"
-                     class="w-full pl-10 pr-3 py-3 bg-gray-700 bg-opacity-50 border border-gray-600 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
-                     placeholder="Enter city" v-model="address.city" required>
-            </div>
-          </div>
-          <div>
-            <label for="province" class="block text-gray-300 text-sm font-medium mb-2">Province/State</label>
-            <div class="relative">
-              <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <i class="fas fa-map text-gray-500"></i>
-              </div>
-              <input type="text" id="province" name="province"
-                     class="w-full pl-10 pr-3 py-3 bg-gray-700 bg-opacity-50 border border-gray-600 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
-                     placeholder="Enter province or state" v-model="address.province" required>
-            </div>
-          </div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-6">
-          <div>
-            <label for="country" class="block text-gray-300 text-sm font-medium mb-2">Country</label>
-            <div class="relative">
-              <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <i class="fas fa-flag text-gray-500"></i>
-              </div>
-              <input type="text" id="country" name="country"
-                     class="w-full pl-10 pr-3 py-3 bg-gray-700 bg-opacity-50 border border-gray-600 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
-                     placeholder="Enter country" v-model="address.country" required>
-            </div>
-          </div>
-          <div>
-            <label for="postal_code" class="block text-gray-300 text-sm font-medium mb-2">Postal Code</label>
-            <div class="relative">
-              <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <i class="fas fa-mail-bulk text-gray-500"></i>
-              </div>
-              <input type="text" id="postal_code" name="postal_code"
-                     class="w-full pl-10 pr-3 py-3 bg-gray-700 bg-opacity-50 border border-gray-600 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
-                     placeholder="Enter postal code" v-model="address.postalCode" required>
-            </div>
-          </div>
-        </div>
-
-        <div class="flex justify-end space-x-4">
+      <AddressForm v-model="address" @submit="handleSubmit">
+        <template #buttons>
           <BackButton :to="`/dashboard/contacts/${id}`">
             <template #icon>
               <i class="fas fa-times mr-2"></i>
@@ -174,8 +112,8 @@ onMounted(async () => {
             Cancel
           </BackButton>
           <SubmitButton/>
-        </div>
-      </form>
+        </template>
+      </AddressForm>
     </div>
   </div>
 </template>
