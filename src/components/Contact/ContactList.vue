@@ -5,6 +5,7 @@ import {useLocalStorage} from "@vueuse/core";
 import {alertConfirm, alertError, alertSuccess} from "../../lib/alert.js";
 import EditButton from "../widget/EditButton.vue";
 import DeleteButton from "../widget/DeleteButton.vue";
+import SubmitButton from "../widget/SubmitButton.vue";
 
 const token = useLocalStorage("token", "")
 const search = reactive({
