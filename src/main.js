@@ -13,6 +13,7 @@ import ContactEdit from "./components/Contact/ContactEdit.vue";
 import ContactDetail from "./components/Contact/ContactDetail.vue";
 import AddressCreate from "./components/Address/AddressCreate.vue";
 import AddressEdit from "./components/Address/AddressEdit.vue";
+import NotFound from "./components/NotFound.vue";
 
 const router = createRouter({
     history: createWebHistory(),
@@ -45,6 +46,13 @@ const router = createRouter({
                 {path: 'users/profile', component: UserProfile},
                 {path: 'users/logout', component: UserLogout}
             ]
+        },
+        {
+            path: '/:pathMatch(.*)*',
+            component:Layout,
+            children: [
+                {path: '', component:NotFound}
+            ]
         }
     ]
 })
@@ -58,7 +66,10 @@ router.beforeEach((to, from, next) => {
 
     //jika user belum login dan minta halaman selain di daftar publik, maka arahkan ke halaman login
     if (authRequired && !isLoggedIn) {
-        return next('/login')
+        return next({
+            path: '/login',
+            query: {redirect: to.fullPath}
+        })
     }
 
     //redirect ke halaman dashboard jika sudah login

@@ -1,12 +1,13 @@
 <script setup>
 
 import {reactive} from "vue";
-import {useRouter} from "vue-router";
+import {useRoute, useRouter} from "vue-router";
 import {useLocalStorage} from "@vueuse/core";
 import {userLogin} from "../../lib/api/UserApi.js";
 import {alertError} from "../../lib/alert.js";
 
 const router = useRouter()
+const route = useRoute()
 const token = useLocalStorage("token", "")
 const user = reactive({
   username: "",
@@ -20,9 +21,12 @@ async function handleSubmit() {
 
   if (response.status === 200) {
     token.value = responseBody.data.token;
-    await router.push({
-      path: '/dashboard/contacts'
-    })
+    const redirectTo = route.query.redirect || "/dashboard/contacts";
+    await router.push(redirectTo)
+    // {
+    //   redirect: redirectTo,
+    //   // path: '/dashboard/contacts'
+    // }
   } else {
     await alertError(responseBody.errors)
   }
