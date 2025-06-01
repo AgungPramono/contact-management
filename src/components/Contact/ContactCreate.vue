@@ -4,6 +4,7 @@ import {ContactCreate} from "../../lib/api/ContactApi.js";
 import {useLocalStorage} from "@vueuse/core";
 import {alertError, alertSuccess} from "../../lib/alert.js";
 import {useRouter} from "vue-router";
+import BackButton from "../widget/BackButton.vue";
 
 const router = useRouter()
 const token = useLocalStorage("token", "")
@@ -98,10 +99,12 @@ async function handleSubmit() {
         </div>
 
         <div class="flex justify-end space-x-4">
-          <RouterLink to="/dashboard/contacts"
-                      class="px-5 py-3 bg-gray-700 text-white rounded-lg hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-gray-800 transition-all duration-200 flex items-center shadow-md">
-            <i class="fas fa-times mr-2"></i> Cancel
-          </RouterLink>
+          <BackButton :to="`/dashboard/contacts`">
+            <template #icon>
+              <i class="fas fa-times mr-2"></i>
+            </template>
+            Cancel
+          </BackButton>
           <button type="submit"
                   class="px-5 py-3 bg-gradient text-white rounded-lg hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-800 transition-all duration-200 font-medium shadow-lg transform hover:-translate-y-0.5 flex items-center">
             <i class="fas fa-plus-circle mr-2"></i> Create Contact

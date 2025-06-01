@@ -8,6 +8,7 @@ import {alertConfirm, alertError, alertSuccess} from "../../lib/alert.js";
 import {addressList, deleteAddress} from "../../lib/api/AddressApi.js";
 import EditButton from "../widget/EditButton.vue";
 import DeleteButton from "../widget/DeleteButton.vue";
+import BackButton from "../widget/BackButton.vue";
 
 const route = useRoute();
 const {id} = route.params;
@@ -204,14 +205,13 @@ onMounted(async () => {
 
       <!-- Action Buttons -->
       <div class="flex justify-end space-x-4">
-        <RouterLink to="/dashboard/contacts"
-                    class="px-5 py-3 bg-gray-700 text-white rounded-lg hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-gray-800 transition-all duration-200 flex items-center shadow-md">
-          <i class="fas fa-arrow-left mr-2"></i> Back
-        </RouterLink>
-        <RouterLink :to="`/dashboard/contacts/${id}/edit`"
-                    class="px-5 py-3 bg-gradient text-white rounded-lg hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-800 transition-all duration-200 font-medium shadow-lg transform hover:-translate-y-0.5 flex items-center">
-          <i class="fas fa-user-edit mr-2"></i> Edit Contact
-        </RouterLink>
+        <BackButton :to="`/dashboard/contacts`"/>
+        <EditButton :to="`/dashboard/contacts/${id}/edit`">
+          <template #icon>
+            <i class="fas fa-user-edit mr-2"></i>
+          </template>
+          Edit Contact
+        </EditButton>
       </div>
     </div>
   </div>
