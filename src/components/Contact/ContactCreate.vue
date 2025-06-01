@@ -5,6 +5,7 @@ import {useLocalStorage} from "@vueuse/core";
 import {alertError, alertSuccess} from "../../lib/alert.js";
 import {useRouter} from "vue-router";
 import BackButton from "../widget/BackButton.vue";
+import SubmitButton from "../widget/SubmitButton.vue";
 
 const router = useRouter()
 const token = useLocalStorage("token", "")
@@ -105,10 +106,12 @@ async function handleSubmit() {
             </template>
             Cancel
           </BackButton>
-          <button type="submit"
-                  class="px-5 py-3 bg-gradient text-white rounded-lg hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-800 transition-all duration-200 font-medium shadow-lg transform hover:-translate-y-0.5 flex items-center">
-            <i class="fas fa-plus-circle mr-2"></i> Create Contact
-          </button>
+          <SubmitButton>
+            <template #icon>
+              <i class="fas fa-plus-circle mr-2"></i>
+            </template>
+            Create Contact
+          </SubmitButton>
         </div>
       </form>
     </div>
