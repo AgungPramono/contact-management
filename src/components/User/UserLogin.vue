@@ -1,6 +1,6 @@
 <script setup>
 
-import {reactive} from "vue";
+import {onMounted, reactive, ref} from "vue";
 import {useRoute, useRouter} from "vue-router";
 import {useLocalStorage} from "@vueuse/core";
 import {userLogin} from "../../lib/api/UserApi.js";
@@ -9,6 +9,9 @@ import {alertError} from "../../lib/alert.js";
 const router = useRouter()
 const route = useRoute()
 const token = useLocalStorage("token", "")
+
+const username = ref(null)
+
 const user = reactive({
   username: "",
   password: ""
@@ -32,6 +35,10 @@ async function handleSubmit() {
   }
 }
 
+onMounted(() => {
+  username.value?.focus()
+})
+
 </script>
 
 <template>
@@ -52,7 +59,7 @@ async function handleSubmit() {
           <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
             <i class="fas fa-user text-gray-500"></i>
           </div>
-          <input type="text" id="username" name="username"
+          <input ref="username" type="text" id="username" name="username"
                  class="w-full pl-10 pr-3 py-3 bg-gray-700 bg-opacity-50 border border-gray-600 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
                  placeholder="Enter your username" required v-model="user.username">
         </div>

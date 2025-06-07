@@ -9,6 +9,8 @@ const name = ref("")
 const password = ref("")
 const confirm_password = ref("")
 
+const fullName = ref(null)
+
 async function fetchUser() {
 
   const response = await userDetail(token.value);
@@ -57,6 +59,7 @@ async function handleChangePassword() {
 
 //load data ketika halaman dibuka
 onBeforeMount(async () => {
+  fullName.value?.focus()
   await fetchUser()
 })
 
@@ -87,7 +90,7 @@ onBeforeMount(async () => {
               <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                 <i class="fas fa-user text-gray-500"></i>
               </div>
-              <input type="text" id="name" name="name"
+              <input ref="fullName" type="text" id="name" name="name"
                      class="w-full pl-10 pr-3 py-3 bg-gray-700 bg-opacity-50 border border-gray-600 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
                      placeholder="Enter your full name" required v-model="name">
             </div>

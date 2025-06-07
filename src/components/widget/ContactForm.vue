@@ -1,5 +1,9 @@
 <script setup>
 
+import {onMounted, ref} from "vue";
+
+const firstName = ref(null)
+
 const contact = defineModel({
     type: Object,
     required: true
@@ -10,6 +14,10 @@ const emit = defineEmits(['submit'])
 function handleSubmit() {
   emit('submit', {...contact.value})
 }
+
+onMounted(() => {
+  firstName.value?.focus()
+})
 
 </script>
 
@@ -23,7 +31,7 @@ function handleSubmit() {
           <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
             <i class="fas fa-user-tag text-gray-500"></i>
           </div>
-          <input type="text" id="first_name" v-model="contact.firstName"
+          <input ref="firstName" type="text" id="first_name" v-model="contact.firstName"
                  class="w-full pl-10 pr-3 py-3 bg-gray-700 bg-opacity-50 border border-gray-600 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
                  placeholder="Enter first name" required>
         </div>
